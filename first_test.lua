@@ -35,7 +35,7 @@ Here is a way to include a number: `print(("I'm %d years old"):format(8))`. Try 
 
 We can now format our message using the number placeholders: `%d` for integers (like `2200)` and `%f` for decimals (like `1.5`).
 
-**String**: a group of letters surrounded by single or double quotes. Strings can be **concatenated** together using |..| (two dots) operator. Strings can be **formatted** using |:format| method.
+**String**: a group of letters surrounded by single or double quotes. Strings can be **concatenated** together using |..| (two dots) operator. Strings can be **formatted** using |:format| (to ) method.
 Examples: |"Hello!"|; |'abc'| .. |'def'|; print((|"I'm %d years old"|):|format|(|8|))
 
 Done in |testingNumbers()| function
@@ -110,8 +110,47 @@ local function testFunc()
   end
 end
 
+local function simpleCode(isMotion, relayState, count)
+  if(isMotion) then
+    relayState = 1
+  end
+  
+  if(isMotion == false) then
+    if(relayState == 1) then
+      relayState = 0
+    end
+  end
+  
+  print(("%d. Current light state is %d"):format(count, relayState))
+end
+
+local function testSimple()
+  isMotion = false
+  relayState = 0
+  
+  for i = 0, 4 do
+    if(i == 0) then
+      isMotion = true
+      relayState = 0
+    elseif(i == 1) then
+      isMotion = false
+      relayState = 1
+    elseif(i == 2) then
+      isMotion = false
+      relayState = 0
+    elseif(i == 3) then
+      isMotion = true
+      relayState = 1
+    end
+    
+    simpleCode(isMotion, relayState, i)
+  end
+  
+end
+
 tutorial()
 testingNumbers()
 testingStrings()
 testFunc()
+testSimple()
 
